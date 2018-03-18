@@ -1,7 +1,27 @@
 <div style="text-align:center">
   <h1>
-    Welcome to Binance Reporter!
+    Welcome to {{title}}
   </h1>
 
-  <button (click)="launchWindow()">Launch a Window</button>
+  <h2>Prices</h2>
+
+
+
+  <div class='table-responsive'>
+          <table class='table'
+                  *ngIf='prices && prices.length'>
+              <thead>
+                  <tr>
+                      <th>Symbol</th>
+                      <th>Price</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <tr *ngFor='let price of prices'>
+                      <td>{{ price.symbol }}</td>
+                      <td>{{ price.price }}</td>
+                  </tr>
+              </tbody>
+          </table>
+      </div>
 </div>
