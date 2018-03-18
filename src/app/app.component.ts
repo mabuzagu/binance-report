@@ -4,6 +4,14 @@ import { BinanceService } from './binance.service';
 
 import { IPrice } from './price.interface';
 
+const binance = require('node-binance-api');
+
+binance.options({
+  APIKEY: 'BtVEjw9f4QX7ujc5RFg2Actywwyp3qXwMRBQru8X2hnFFGVvQ4ytV7oDlGNnP8yA',
+  APISECRET: 'K5dO6QusJfFWHPDRDm9IzWkYMBpFDvStSMpZYlESdYHcztLxQNfRvefGr2SEelyi',
+  useServerTime: true
+});
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
@@ -30,6 +38,14 @@ export class AppComponent {
   }
 
   ngOnInit(): void {
+
+
+
+    binance.balance((error, balances) => {
+      console.log("balances()", balances);
+      console.log("ETH balance: ", balances.ETH.available);
+    });
+
     this._binanceService.getPrices()
                   .subscribe(
                     prices => this.prices = prices,
