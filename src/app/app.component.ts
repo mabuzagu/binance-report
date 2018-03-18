@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ElectronService } from 'ngx-electron';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app';
+
+  constructor(private _electronService: ElectronService){
+
+  }
+
+  title = 'BinanceReport';
+
+  launchWindow() {
+    this._electronService.shell.openExternal('https://binance.com');
+  }
 }
